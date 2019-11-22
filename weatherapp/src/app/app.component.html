@@ -1,0 +1,35 @@
+<div class="weatherApp" [hidden]="false">
+  <div class="navbar navbar-default navbar-fixed-top topBar">
+    <img src="assets/images/logo.png" alt="Logo" width="50px">
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar leftSideBar">
+          <ul class="nav nav-sidebar">
+            <li (click)="showPlaces(0);" [ngClass]="{'activeCountry': countryNumber == 0}">India</li>
+            <li (click)="showPlaces(1);" [ngClass]="{'activeCountry': countryNumber == 1}">Pakistan</li>
+            <li (click)="showPlaces(2);" [ngClass]="{'activeCountry': countryNumber == 2}">China</li>
+            <li (click)="showPlaces(3);" [ngClass]="{'activeCountry': countryNumber == 3}">Brazil</li>
+            <li (click)="showPlaces(4);" [ngClass]="{'activeCountry': countryNumber == 4}">Sri lanka</li>
+          </ul>
+      </div>
+      <div class="mainContent">
+        <div *ngFor="let item of country[countryNumber].places">
+          <div class="city">
+            <h3 style="font-weight: 600;">{{item.place}}</h3>
+            <div class="cityContent">
+              <p class="citySubHeading">Current Temparature: {{item.temparature}}&deg;C</p>
+              <div class="weatherStatus">
+                <img src="assets/images/superCool.png" alt="Logo" width="25px" [hidden]="!(item.temparature < 1)">
+                <img src="assets/images/cool.png" alt="Logo" width="25px" [hidden]="!(item.temparature >= 1 && item.temparature < 11)">
+                <img src="assets/images/rain.png" alt="Logo" width="25px" [hidden]="!(item.temparature >= 11 && item.temparature < 21)">
+                <img src="assets/images/normal.png" alt="Logo" width="25px" [hidden]="!(item.temparature >= 21 && item.temparature < 31)">
+                <img src="assets/images/hot.png" alt="Logo" width="25px" [hidden]="!(item.temparature >= 31)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
